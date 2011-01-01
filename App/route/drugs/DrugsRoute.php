@@ -4,7 +4,7 @@ require_once(dirname(__FILE__).'/../../drugs/domain/model/SavedDrugInfo.php');
 require_once(dirname(__FILE__).'/../../drugs/domain/model/SavedDrugDossageInfo.php');
 
 $drugsController = new DrugsController();
-$action = $_POST['action'];
+$action =$_POST['action'];
 
 
 

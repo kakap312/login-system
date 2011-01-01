@@ -27,38 +27,30 @@ $(document).ready(function(){
             $(".childdossage").hide();
         }
     })
-$("#viewdrugsmenu").click(function(){
-        drugs.success?createDrugViewUi(drugs.data):alert(drugs.message);
-    })
+    $("#viewdrugsmenu").click(function(){
+        drugs.success?createDrugViewUi():alert(drugs.message);
+    });
+
     $("#adddrugbtn").click(function(e){
         if(confirm("Are you sure you want to add Drugs")){
             var createDrugReuslt = requestDataFromSever(drugrouteurl,requestMethod,createFormData($("#createdrug")[0],['action'],["createdrug"]));
             createDrugReuslt.success?alert(createDrugReuslt.message):alert(createDrugReuslt.message);
-            // fetch drug again
-            fetchDrugs();
         }
-        
-    })
+    });
     $(".updatedrugbtn").click(function(e){
         if(confirm("Are you sure you want to add Drugs")){
             var updateDrugRsult = requestDataFromSever(drugrouteurl,requestMethod,createFormData($("#updatedrug")[0],['action','drugId'],["updatedrug",drugId]));
             updateDrugRsult.success?alert(updateDrugRsult.message): alert(updateDrugRsult.message);
         }
-    })
+    });
     $('#searchkey').change(function(){
-        showOrHideSection('.fetchdrugsection',sections);
+        showOrHideSection('.fetchdrugsection');
         $('.datarow').remove();
-        $(".seemorebtn").hide();
-        var searchResult = requestDataFromSever(
-            drugrouteurl,
-            requestMethod,
-            createFormData(null,['action','searchkey'],['searchdrugs',$('#searchkey').val()])
-            );
-            searchResult.success?populatedrugView(searchResult.data):alert(searchResult.message);
-       $('#searchkey').val(""); // empties the seach input 
-    }) 
-});
-
+        var searchedDrugs = requestDataFromSever(drugrouteurl,requestMethod,createFormData(null,['action','searchkey'],['searchdrugs',$('#searchkey').val()]));
+        searchedDrugs.success?populateViewDrugsUi(searchedDrugs.data):alert(searchedDrugs.message);
+       $('#searchkey').val("");
+    }); 
+}); // end of $(document).ready function
 
 function populateDrugGroups(){
     var drugGroups = requestDataFromSever(drugrouteurl,requestMethod,createFormData(null,['action'],['druggroup'])).data;
@@ -68,12 +60,10 @@ function populateDrugGroups(){
 }
 
 function populateDrugTypes(){
-    
     var drugTypes = requestDataFromSever(drugrouteurl,requestMethod,createFormData(null,['action'],['drugtype'])).data
     for (let index = 0; index < drugTypes.length; index++) {
         $('.drugtype').append('<option value='+drugTypes[index].name +'> '+drugTypes[index].name+'</option>'); 
     }
-
 }
 function populateDrugLocations(){
     var drugLocations = requestDataFromSever(drugrouteurl,requestMethod,createFormData(null,['action'],['druglocation'])).data
@@ -81,9 +71,11 @@ function populateDrugLocations(){
         $('.druglocation').append('<option>'+drugLocations[index].name+'</option>'); 
     }
 }
-function populatedrugView(drugs){
-    $('#totaldrugs').html(drugs.length);
-    drugs.forEach(drug => {
+function populateViewDrugsUi(){
+    fetchDrugs();
+    if(drugs.data.length > 0){
+    $('#totaldrugs').html(drugs.data.length);
+    drugs.data.forEach(drug => {
         $('.drugviewtable').append(
             "<tr class='datarow'><td>"+drug.name+"</td><td>"+
             drug.drugLocation +"</td><td>"+
@@ -94,29 +86,27 @@ function populatedrugView(drugs){
             drug.effect+
             "</td><td><select class='action' id="+drug.id+"><option disabled selected>select an action</option><option>Delete</option><option>Update</option></select></td></tr>"
             )
-    });
+    })
     $('.action').change(function(){
         if(($(this).val() == "Delete")){
             if(confirm("Are you sure you want to delete Drugs")){
                 var deleteResult = requestDataFromSever(drugrouteurl,requestMethod,createFormData(null,['action','drugid'],['deletedrug',$(this).attr('id')]));
-                if(deleteResult.success){
-                    fetchDrugs();
-                    createDrugViewUi(drugs.data);
-                }else{
-                    alert(deleteResult.message);
-                }
+                deleteResult.success?createDrugViewUi():alert(deleteResult.message);
             }
         }else if(($(this).val() == "Update")){
-            showOrHideSection('.renamedrugssection',sections);
+            showOrHideSection('.renamedrugssection');
             var drug = requestDataFromSever(
                 drugrouteurl,
                 requestMethod,
                 createFormData(null,['action','drug_id'],["searchdrug",$(this).attr('id')])
             );  
-            drugId = drug.data.id;
-            populateUpdateForm(drug.data);
+            drugId 
+            populateUpdateForm(drug);
         }
     })
+}else{
+        alert("No drugs to dispplay");
+}
 }
 function fetchDrugs(){
         drugs = requestDataFromSever(
@@ -125,25 +115,24 @@ function fetchDrugs(){
         createFormData(null,['action'],["fetchdrugs"])
         );
 }
-function createDrugViewUi(drugs){
+function createDrugViewUi(){
     showOrHideSection('.fetchdrugsection');
     $('.datarow').remove();
-    $(".seemorebtn").show();
-    populatedrugView(drugs);
+    populateViewDrugsUi();
 }
 
-function populateUpdateForm(drugViewModel){
-    $('.createdAt').val(drugViewModel.createdAt)
-    $('.drugname').val(drugViewModel.name)
-    $('.amount').val(drugViewModel.drugAmount)
-    $('.weight').val(drugViewModel.drugWeight)
-    $('.drugmanufacturer').val(drugViewModel.drugManufacturer)
-    $('.drugmanufacturer').val(drugViewModel.drugManufacturer)
-    $('.druggroup').val(drugViewModel.drugGroup)
-    $('.druglocation').val(drugViewModel.drugLocation)
-    if(drugViewModel.drugGroup.trim() == 'oral'){
-        $('.adultdossage').val(drugViewModel.adultDossage)
-        $('.childdossage').val(drugViewModel.childDossage)
+function populateUpdateForm(drug){
+    $('.createdAt').val(drug.createdAt)
+    $('.drugname').val(drug.name)
+    $('.amount').val(drug.drugAmount)
+    $('.weight').val(drug.drugWeight)
+    $('.drugmanufacturer').val(drug.drugManufacturer)
+    $('.drugmanufacturer').val(drug.drugManufacturer)
+    $('.druggroup').val(drug.drugGroup)
+    $('.druglocation').val(drug.drugLocation)
+    if(drug.drugGroup.trim() == 'oral'){
+        $('.adultdossage').val(drug.adultDossage)
+        $('.childdossage').val(drug.childDossage)
     }else{
         $(".adultdossage").hide();
         $(".childdossage").hide();

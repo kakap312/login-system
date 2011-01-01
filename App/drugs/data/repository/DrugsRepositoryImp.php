@@ -26,7 +26,7 @@ class DrugsRepositoryImp implements DrugsRepository{
         if(is_null($dbDrug)){
             return new Result(null,TWENTY,false);
         }else{
-            return new Result(DbDrugToDomainMapper::map($dbDrug),FIFTY,true);
+            return new Result(DbDrugToDomainMapper::map($dbDrug),RECORD_FOUND,true);
         }
         return DbDrugToDomainMapper::map($dbDrug);
 
@@ -36,7 +36,7 @@ class DrugsRepositoryImp implements DrugsRepository{
         if(is_null($dbDrug)){
             return new Result(null,TWENTY,false);
         }else{
-            return new Result(DbDrugToDomainMapper::map($dbDrug),FIFTY,true);
+            return new Result(DbDrugToDomainMapper::map($dbDrug),RECORD_FOUND,true);
         }
     }
     function searchDrugByNameAndManufacturerAndType($name,$manufacturer,$type){
@@ -44,7 +44,7 @@ class DrugsRepositoryImp implements DrugsRepository{
         if(is_null($dbDrug)){
             return new Result(null,SEVENTY,false);
         }else{
-            return new Result(DbDrugToDomainMapper::map($dbDrug),FIFTY,true);
+            return new Result(DbDrugToDomainMapper::map($dbDrug),RECORD_FOUND,true);
         } 
     }
     function fetchDrugs()
@@ -70,7 +70,7 @@ class DrugsRepositoryImp implements DrugsRepository{
             for ($i=0; $i <count($dbDrugs) ; $i++) { 
                 array_push($drugs,DbDrugToDomainMapper::map($dbDrugs[$i]));
              }
-            return new Result($drugs,FIFTY,true);
+            return new Result($drugs,RECORD_FOUND,true);
         }
     }
     function getTotalNumberOfDrugs(){ 
