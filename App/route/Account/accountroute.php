@@ -3,9 +3,10 @@
 session_start();
 require_once(dirname(__FILE__).'/AccountController.php');
 require_once(dirname(__FILE__).'/../../account/domain/model/Credentials.php');
-$accountController = new AccountController();
 
+$accountController = new AccountController();
 $action =  $_POST['action'];
+
 if($action == "login"){
     echo json_encode($accountController->login(new Credential($_POST['username'],$_POST['password'])));
     $_SESSION['username'] = $_POST['username']; 

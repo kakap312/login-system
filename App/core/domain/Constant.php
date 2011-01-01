@@ -10,3 +10,6 @@ define("EIGHTY","Deleted successfully");
 define("NINETY","Sorry Unable to delete");
 define("HUNDRED","Successfully Updated");
 define("HUNDRED_TEN","Sorry Unable to  Updated");
+define("HUNDRED_TWENTY", "Username is invalide.(Hint - Username must be 8 characters with at least one alphabet");
+define("HUNDRED_THIRTY", "Username is valid");
+?>

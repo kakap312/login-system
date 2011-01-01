@@ -1,7 +1,9 @@
 
 <?php
-require_once(dirname(__FILE__).'/../../core/data/di/DependencyInjection.php');
-require_once(dirname(__FILE__).'/../../account/domain/model/SavedAccountInfo.php');
+require_once(dirname(__DIR__,2).'/core/data/di/DependencyInjection.php');
+require_once(dirname(__DIR__,2).'/account/domain/model/SavedAccountInfo.php');
+require_once(dirname(__DIR__,2).'/core/domain/Result.php');
+require_once(dirname(__DIR__,2).'/core/domain/Constant.php');
 
 class AccountController{
     private $accountRepository;
@@ -23,7 +25,11 @@ class AccountController{
         return $this->accountRepository->createAccount($savedAccountInfo);
     }
     public function validateUsername($username){
-       return $this->usernameValidator->validate($username);
+        if( $this->usernameValidator->validate($username)){
+            return new Result(null,HUNDRED_THIRTY,true);
+        }else{
+             return new Result(null,HUNDRED_TWENTY,false);
+        }
     }
     public function validatePassword($password){
        return $this->passwordValidator->validate($password);
