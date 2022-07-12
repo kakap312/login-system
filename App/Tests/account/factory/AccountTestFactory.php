@@ -13,4 +13,7 @@ class AccountTestFactory{
     public static function makeResult(){
         return new Result("account found",null);
     }
+    public function makeCredential(){
+        return new Credential("kakap312","stephenOmari12");
+    }
 }

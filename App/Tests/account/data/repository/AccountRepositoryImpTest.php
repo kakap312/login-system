@@ -26,5 +26,11 @@ class AccountRepositoryImpTest extends PHPUnit_Framework_TestCase {
         $dbQueryResponse = $this->accountRepositoryImp->isAccountFound($username);
         $this->assertEquals($result->getMessage(),$dbQueryResponse->getMessage());
     }
+    public function testLoginshouldSuccessfullyLogsAUserIn(){
+        $credential = AccountTestFactory::makeCredential();
+        $this->mockDao->method('findAccountInstance')->willReturn(AccountTestFactory::makeDbQueryResponse());
+        $dbQueryResponse = $this->accountRepositoryImp->login($credential);
+        $this->assertEquals($result->getMessage(),$dbQueryResponse->getMessage());
+    }
 
 }
