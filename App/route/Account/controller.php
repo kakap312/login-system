@@ -19,14 +19,14 @@ class AccountController{
     }
     public function validateRegistrationInfo($savedAccountInfo){
         return new AccountRegistrationValidation(
-            $this->usernameValidator->validateUsername($savedAccountInfo->getUserName()),
-            $this->passwordValidator->validatePassword($savedAccountInfo->getPassword())
+            $this->usernameValidator->validate($savedAccountInfo->getUserName()),
+            $this->passwordValidator->validate($savedAccountInfo->getPassword())
         );
     }
     public function validateLoginInfo(){
         return new AccountLoginValidation(
-            $this->usernameValidator->validateUsername($savedAccountInfo->getUserName()),
-            $this->passwordValidator->validatePassword($savedAccountInfo->getPassword())
+            $this->usernameValidator->validate($savedAccountInfo->getUserName()),
+            $this->passwordValidator->validate($savedAccountInfo->getPassword())
         );
     }
 }
