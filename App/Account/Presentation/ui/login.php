@@ -29,9 +29,9 @@
                         <div class="page-links">
                             <a href="login9.html" class="active">Login</a><a href="register9.html">Register</a>
                         </div>
-                        <form>
-                            <input class="form-control" type="text" name="username" placeholder="E-mail Address" required>
-                            <input class="form-control" type="password" name="password" placeholder="Password" required>
+                        <form id="loginform">
+                            <input class="form-control" type="text" id='username' name="username" placeholder="E-mail Address" required>
+                            <input class="form-control" id='password' type="password" name="password" placeholder="Password" required>
                             <div class="form-button">
                                 <button id="submit" type="submit" class="ibtn">Login</button> <a href="forget9.html">Forget password?</a>
                             </div>
@@ -42,5 +42,6 @@
         </div>
     </div>
     <?php require_once(dirname(__FILE__).'/../../../core/presentation/ui/resources/include/footer.php'); ?>
+    <script src="resources/js/accountjs.js"></script>
 </body>
 </html>

@@ -1,11 +1,13 @@
 <?php
 class Result{
-    private $message;
-    private $data;
+    public $message;
+    public $data;
+    public $error;
 
-    public function __construct($message,$data){
+    public function __construct($message,$data,$error){
         $this->message = $message;
         $this->data = $data;
+        $this->error = $error;
     }
     public function setMessage($message){
         $this->messgae = $message;
@@ -16,8 +18,14 @@ class Result{
     public function setData($data){
         $this->data = $data;
     }
-    public function getData(){
+    public function getData($error){
         return $this->data;
+    }
+    public function setError($error){
+        return $this->error = $error;
+    }
+    public function getError(){
+        return $this->error;
     }
     
 }

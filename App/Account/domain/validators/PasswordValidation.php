@@ -1,8 +1,8 @@
 <?php
 class PasswordValidation{
     
-    public function validate($username){
-        if(strlen(trim($username)) < 8){
+    public function validate($password){
+        if(strlen(trim($password)) < 8){
             return false;
         }
         return true;

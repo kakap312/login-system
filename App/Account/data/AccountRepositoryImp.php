@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../domain/repository/AccountRepository.php');
-require_once(dirname(__FILE__).'/../../core/data/domain/Result.php');
+require_once(dirname(__FILE__).'/../../core/domain/Result.php');
 require_once(dirname(__FILE__).'/db/model/dbAccount.php');
 require_once(dirname(__FILE__).'/db/model/dbQueryResponse.php');
 
@@ -25,11 +25,11 @@ class AccountRepositoryImp implements AccountRepository {
         return new Result($dbQueryResponse->getMessage(),$dbQueryResponse->getData());
     }
 
-    public function isAccountFound($username){
-        $dbQueryResponse  = $this->accountDao->findAccountInstance($username);
+    public function isAccountFound($username,$password){
+        $dbQueryResponse  = $this->accountDao->findAccountInstance($username,$password);
         if(!$dbQueryResponse->getError()){
-            return new Result($dbQueryResponse->getMessage(),$dbQueryResponse->getData());
+            return new Result($dbQueryResponse->getMessage(),$dbQueryResponse->getData(),$dbQueryResponse->getError());
         }
-        return new Result($dbQueryResponse->getMessage(),$dbQueryResponse->getData());
+        return new Result($dbQueryResponse->getMessage(),$dbQueryResponse->getData(),$dbQueryResponse->getError());
     }
 }

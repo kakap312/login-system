@@ -1,31 +1,34 @@
 <?php
+require_once(dirname(__FILE__).'/../../../account/domain/validators/UsernameValidation.php');
+require_once(dirname(__FILE__).'/../../../account/domain/validators/PasswordValidation.php');
+require_once(dirname(__FILE__).'/../../../account/data/AccountRepositoryImp.php');
+require_once(dirname(__FILE__).'/../../../account/data/dao/AccountDao.php');
+require_once(dirname(__FILE__).'/../db/model/DbConnection.php');
 class DependencyInjection{
-    private $dbConnection;
-    private $accountRepositoryImp;
-    private $accountDao;
-    private $userNameValidator;
-    private $passwordValidator;
+    private  $dbConnection;
+    private  $accountRepositoryImp;
+    private  $accountDao;
+    private  $userNameValidator;
+    private  $passwordValidator;
 
     public function __construct(){
-        $this->connection = new DBConnection("root","root","localhost");
+        $this->connection = (new DBConnection("localhost","root","","perfectdb"))->getDbConnection();
         $this->accountDao = new accountDao($this->connection);
-        $this->repository = new AccountRepositoryImp($this->accountDao);
-        $this->userNameValidator = new UserNameValidation();
-        $this->passwordValidator = new PasswordeValidation();
+        $this->accountRepositoryImp = new AccountRepositoryImp($this->accountDao);
     }
-    public static function getAccountRepository(){
+    public  function getAccountRepository(){
         return $this->accountRepositoryImp;
     }
-    public static function getAccountDao(){
+    public  function getAccountDao(){
         return $this->accountDao;
     }
-    public static function getDbConnection(){
+    public  function getDbConnection(){
         return $this->dbConnection;
     }
     public function getUserNameValidator(){
-        return $this->userNameValidator;
+        return new UserNameValidation();
     }
     public function getPasswordValidator(){
-        return $this->PasswordValidator;
+        return new PasswordValidation();
     }
 }
