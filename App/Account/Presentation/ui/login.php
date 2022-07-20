@@ -27,11 +27,13 @@
                             </a>
                         </div>
                         <div class="page-links">
-                            <a href="login9.html" class="active">Login</a><a href="register9.html">Register</a>
+                            <a href="login.php" class="active">Login</a><a href="register.php">Register</a>
                         </div>
                         <form id="loginform">
                             <input class="form-control" type="text" id='username' name="username" placeholder="E-mail Address" required>
+                            <p class='usernamemessage'></p>
                             <input class="form-control" id='password' type="password" name="password" placeholder="Password" required>
+                            <p class='passwordmessage'></p>
                             <div class="form-button">
                                 <button id="submit" type="submit" class="ibtn">Login</button> <a href="forget9.html">Forget password?</a>
                             </div>

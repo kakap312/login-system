@@ -1,11 +1,13 @@
 <?php
-class AccountReistrationValidation{
-    private $isUsernameValid;
-    private $isPasswordValid;
+class AccountRegistrationValidation{
+    public $isUsernameValid;
+    public $isPasswordValid;
+    public $isFullNameValid;
 
-    public function __construct($isUsernameValid,$isPasswordValid){
-        $this->isUsernameValid = $usernameValidator;
-        $this->isUsernameValid = $passwordValidator;
+    public function __construct($isUsernameValid,$isPasswordValid,$isFullNameValid){
+        $this->isUsernameValid = $isUsernameValid;
+        $this->isUsernameValid = $isPasswordValid;
+        $this->isUsernameValid= $isFullNameValid;
     }
 
 }

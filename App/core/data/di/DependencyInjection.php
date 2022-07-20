@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/../../../account/domain/validators/UsernameValidation.php');
 require_once(dirname(__FILE__).'/../../../account/domain/validators/PasswordValidation.php');
+require_once(dirname(__FILE__).'/../../../account/domain/validators/NameValidation.php');
 require_once(dirname(__FILE__).'/../../../account/data/AccountRepositoryImp.php');
 require_once(dirname(__FILE__).'/../../../account/data/dao/AccountDao.php');
 require_once(dirname(__FILE__).'/../db/model/DbConnection.php');
@@ -30,5 +31,8 @@ class DependencyInjection{
     }
     public function getPasswordValidator(){
         return new PasswordValidation();
+    }
+    public function getNameValidator(){
+        return new NameValidation();
     }
 }

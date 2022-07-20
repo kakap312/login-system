@@ -42,6 +42,10 @@ html, body {
     margin-right: 0;
     height: 100%;
 }
+.message{
+    margin-top: 5px;
+    font-size: 12px;
+}
 
 .website-logo {
     display: inline-block;
@@ -387,10 +391,12 @@ html, body {
 .form-content p {
     color: #fff;
     text-align: left;
-    font-size: 18px;
-    font-weight: 300;
+    font-size: 12px;
+    font-weight: 200;
     line-height: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    margin-top: -10px;
+    padding-left: 10px;
 }
 
 .form-content p.form-subtitle {
