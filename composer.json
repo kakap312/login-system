@@ -1,5 +1,6 @@
 {
     "require": {
-        "phpunit/phpunit": "5"
+        "phpunit/phpunit": "5",
+        "ramsey/uuid": "^3.9"
     }
 }

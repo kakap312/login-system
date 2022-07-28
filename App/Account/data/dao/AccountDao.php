@@ -1,4 +1,5 @@
 <?php
+require_once(dirname(__FILE__).'/../db/model/dbAccount.php');
 class AccountDao{
     private $dbConnection;
 
@@ -6,21 +7,33 @@ class AccountDao{
         $this->dbConnection = $dbConnection;
     }
     public function insertIntoAccount($dbAccount){
-        $insertStatment = "INSERT INTO Accounts(id,username,password,createdAt)VALUE($dbAccount->getId(),$dbAccount->getUserName(),$dbAccount->getPassword(),$dbAccount->getCreatedAt(),'')";
-        if($this->dbConnection->conn)
-        if($this->findAccountInstance($dbAccount->getUserName())->getError()){
-            return new DbQueryResponse(false,null,"username taken");
+        $id = $dbAccount->getId();
+        $username = $dbAccount->getUserName();
+        $password = $dbAccount->getPassword();
+        $createdAt = $dbAccount->getCreatedAt();
+        $updatedAt = $dbAccount->getUpdatedAt();
+        $fullname = $dbAccount->getFullname();
+        $insertStatment = "INSERT INTO accounts(account_id,created_at,fullname,username,password,updated_at)VALUE('$id','$createdAt','$fullname','$username','$password','$updatedAt')";
+        if($this->dbConnection->query($insertStatment) === true){
+            return true;
         }else{
-            if($this->dbConnection->query($insertStatment) === true){return new DbQueryResponse(true,null,"created successfully");}  
-        }
-        return new DbQueryResponse(false,null,"Please check your network and try again");
+            return false;
+        }  
     }
     
-    public function findAccountInstance($username,$password){
+    public function findAccountInstanceByUserNameAndPassword($username,$password){
         $insertStatment = "SELECT * FROM accounts where username='$username' and password='$password';";
         if($this->dbConnection->query($insertStatment)->num_rows > 0){
-            return  new DbQueryResponse(true,null,"account found");
+            return true ;
         }
-        return new DbQueryResponse(false,null,"account not  found");
+        return false;
+    }
+    public function findAccountInstanceByUserName($username){
+        $insertStatment = "SELECT * FROM accounts where username='$username';";
+        if($this->dbConnection->query($insertStatment)->num_rows > 0){
+            return true ;
+        }
+        return false;
+
     }
 }

@@ -17,7 +17,7 @@ class AccountController{
         $this->nameValidator = $dependencyinjector->getNameValidator();
     }
     function login($credential){
-        return $this->accountRepository->isAccountFound($credential->getUsername(),$credential->getPassword());
+        return $this->accountRepository->login($credential);
     }
     function createAccount($savedAccountInfo){
         return $this->accountRepository->createAccount($savedAccountInfo);
@@ -29,6 +29,6 @@ class AccountController{
        return $this->passwordValidator->validate($password);
     }
     public function validateName($name){
-       return $this->fullNameValidator->validate($name);
+       return $this->nameValidator->validate($name);
     }
 }

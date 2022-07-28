@@ -4,10 +4,10 @@ class SavedAccountInfo{
     private $fullName;
     private $userName;
     private $password;
-    public function __construct($userName,$password,$fullName){
+    public function __construct($fullName,$userName,$password){
         $this->userName = $userName;
         $this->password = $password;
-        $this->fillName = $fullName;
+        $this->fullName = $fullName;
     }
 
     public function setUserName($userName){
