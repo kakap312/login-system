@@ -1,23 +1,35 @@
 <?php
-class Result{
-    public $data;
-    public $errorCode;
+class Result implements JsonSerializable{
+    private $data;
+    private $message;
+    private $success;
 
-    public function __construct($data,$errorCode){
+    public function __construct($data,$message,$success){
         $this->data = $data;
-        $this->errorCode = $errorCode;
+        $this->message = $message;
+        $this->success = $success;
     }
     public function setData($data){
         $this->data = $data;
     }
-    public function getData($error){
+    public function getData(){
         return $this->data;
     }
-    public function setErrorCode($errorCode){
-        return $this->errorCode = $errorCode;
+    public function setMessage($message){
+        return $this->message = $message;
     }
-    public function getErrorCode(){
-        return $this->errorCode;
+    public function getMessage(){
+        return $this->message;
+    }
+    public function setSuccess($success){
+        $this->success = $success;
+    }
+    public function getSuccess(){
+        return $this->success;
+    }
+    public function jsonSerialize(){
+        $arr = get_object_vars($this);
+        return $arr;
     }
     
 }

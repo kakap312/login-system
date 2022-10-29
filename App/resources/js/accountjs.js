@@ -59,10 +59,10 @@ $(document).ready(function(){
         formData = new FormData(form);
         formData.append("action","login");
         var loginResult = requestDataFromSever(accountrouteurl,requestMethod,formData);
-        if(loginResult.errorCode == 10){
+        if(loginResult.success){
             window.location.replace("http://localhost/login-system/app/core/presentation/ui/Dashboard.php");
         }else{
-            alert(getErrorMessages(loginResult.errorCode));
+            alert(getErrorMessages(loginResult.message));
         }
         
     });//end of loginformsubmit

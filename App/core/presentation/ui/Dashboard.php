@@ -9,6 +9,7 @@ if(!isset($_SESSION['username'])){header("Location: http://localhost/login-syste
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
         <?php require_once(dirname(__FILE__).'/../../../core/presentation/ui/include/header.php'); ?>
         <link href="../../../resources/css/pages-icons.css" rel="stylesheet" type="text/css">
+        <link href="../../../resources/css/select2.css" rel="stylesheet" type="text/css">
         <link class="main-stylesheet" href="../../../resources/css/pages.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="fixed-header dashboard">
@@ -22,41 +23,32 @@ if(!isset($_SESSION['username'])){header("Location: http://localhost/login-syste
             <div class="sidebar-menu">
 
                 <ul class="menu-items">
-                    <li class="m-t-30 ">
-                        <a href="index.html" class="detailed">
-                        <span class="title">Dashboard</span>
-                        <span class="details">12 New Updates</span>
-                        </a>
-                        <span class="bg-success icon-thumbnail"><i class="pg-home"></i></span>
-                    </li>
                     <li>
-                        <a href="javascript:;"><span class="title">Calendar</span>
+                        <a href="javascript:;"><span class="title">Drugs</span>
                         <span class=" arrow"></span></a>
                         <span class="icon-thumbnail"><i class="pg-calender"></i></span>
                         <ul class="sub-menu">
                             <li class="">
-                            <a href="calendar.html">Basic</a>
-                            <span class="icon-thumbnail">c</span>
+                            <a href="#" id='adddrugs'>Add Drugs</a>
                             </li>
                             <li class="">
-                            <a href="calendar_lang.html">Languages</a>
-                            <span class="icon-thumbnail">L</span>
-                            </li>
-                            <li class="">
-                            <a href="calendar_month.html">Month</a>
-                            <span class="icon-thumbnail">M</span>
-                            </li>
-                            <li class="">
-                            <a href="calendar_lazy.html">Lazy load</a>
-                            <span class="icon-thumbnail">La</span>
-                            </li>
-                            <li class="">
-                            <a href="https://docs.pages.revox.io/apps/calendar" target="_blank">Documentation</a>
-                            <span class="icon-thumbnail">D</span>
+                            <a href="#" id='viewdrugs'>View Drugs</a>
                             </li>
                         </ul>
                     </li>
-
+                    <li>
+                        <a href="javascript:;"><span class="title">Orders</span>
+                        <span class=" arrow"></span></a>
+                        <span class="icon-thumbnail"><i class="pg-calender"></i></span>
+                        <ul class="sub-menu">
+                            <li class="">
+                            <a href="#" id='createorder'>Create Order</a>
+                            </li>
+                            <li class="">
+                            <a href="#" id='vieworder'>View Order</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="">
                     <a href="http://changelog.pages.revox.io/" target="_blank"><span class="title">Changelog</span></a>
                     <span class="icon-thumbnail">Cl</span>
@@ -100,29 +92,19 @@ if(!isset($_SESSION['username'])){header("Location: http://localhost/login-syste
                     </div><!-- display of avatar -->
                 </div>
             </div><!-- End of dashboard header -->
-            <div class='container' style='margin:60px;border:2px solid red;'>
-                <h1>Main content</h1>
-            </div>
-            <div class="page-content-wrapper ">
-                <div class=" container-fluid  container-fixed-lg footer">
-                    <div class="copyright sm-text-center">
-                        <p class="small no-margin pull-left sm-pull-reset">
-                            <span class="hint-text">Copyright &copy; 2017 </span>
-                            <span class="font-montserrat">REVOX</span>.
-                            <span class="hint-text">All rights reserved. </span>
-                            <span class="sm-block"><a href="#" class="m-l-10 m-r-10">Terms of use</a> <span class="muted">|</span> <a href="#" class="m-l-10">Privacy Policy</a></span>
-                        </p>
-                        <p class="small no-margin pull-right sm-pull-reset">
-                            Hand-crafted <span class="hint-text">&amp; made with Love</span>
-                        </p>
-                        <div class="clearfix"></div>
+            <div class='container' style='margin-top:60px;'>
+                <div class='row'>
+                    <div class='col-md-12 maincontent'>
+                        <?php require_once(dirname(__FILE__).'/../../../drugs/presentation/ui/AddDrugs.php'); ?>
+                        <?php require_once(dirname(__FILE__).'/../../../drugs/presentation/ui/FetchDrugs.php'); ?>
+                        <?php require_once(dirname(__FILE__).'/../../../drugs/presentation/ui/UpdateDrug.php'); ?>
+                        <?php require_once(dirname(__FILE__).'/../../../order/presentation/ui/CreateOrder.php'); ?>
                     </div>
                 </div>
-            </div><!-- End of page content wrapper -->
-        </div><!-- End of page container -->
-        <script src="js/jquery-3.2.1.min.js"></script>
-<script src="../../../resources/js/popper.min.js"></script>
+            </div>
+            
 <?php require_once(dirname(__FILE__).'/../../../core/presentation/ui/include/footer.php'); ?>
         <script src="../../../resources/js/pages.js"></script>
+        <script src="../../../resources/js/dashboard.js"></script>
     </body><!-- End of body -->
 </html><!-- End of html -->

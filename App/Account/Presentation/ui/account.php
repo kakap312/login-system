@@ -3,7 +3,6 @@
 <html lang="en"> 
 <head>
 <?php require_once(dirname(__FILE__).'/../../../core/presentation/ui/include/header.php'); ?>
-<link rel="stylesheet" type="text/css" href="../../../resources/css/accountstyle.css">
 <title>account</title>
 </head>
 <body>

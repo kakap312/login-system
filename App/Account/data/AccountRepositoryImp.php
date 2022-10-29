@@ -27,9 +27,9 @@ class AccountRepositoryImp implements AccountRepository {
                 date("dd/mm/yyyy")
             ));
             if($accountCreationResponse){
-                return new Result(null,40); // account created successfully
+                return new Result(null,40,true); // account created successfully
             }else{
-                return new Result(null,50); // Database error, unable to create account
+                return new Result(null,50,false); // Database error, unable to create account
             }
 
         }
@@ -39,8 +39,8 @@ class AccountRepositoryImp implements AccountRepository {
     public function Login($credentials)
     {
         if($this->accountDao->findAccountInstanceByUserNameAndPassword($credentials->getUsername(),$credentials->getPassword())){
-            return new Result(null,10); //error code 10 means user can login
+            return new Result(null,10,true); //error code 10 means user can login
         }
-        return new Result(null,20); // error code 20 means user name can not be found 
+        return new Result(null,20,false); // error code 20 means user name can not be found 
     }
 }

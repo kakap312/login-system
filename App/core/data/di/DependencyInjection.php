@@ -13,7 +13,7 @@ class DependencyInjection{
     private  $passwordValidator;
 
     public function __construct(){
-        $this->connection = (new DBConnection("localhost","root","","perfectdb"))->getDbConnection();
+        $this->connection = (new DBConnection("127.0.0.1","root","","perfectdb"))->getDbConnection();
         $this->accountDao = new accountDao($this->connection);
         $this->accountRepositoryImp = new AccountRepositoryImp($this->accountDao);
     }
