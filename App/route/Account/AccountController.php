@@ -21,20 +21,24 @@ class AccountController{
     function login($credential){
         return $this->accountRepository->login($credential);
     }
-    function createAccount($savedAccountInfo){
-        return $this->accountRepository->createAccount($savedAccountInfo);
-    }
+    // function createAccount($savedAccountInfo){
+    //     return $this->accountRepository->createAccount($savedAccountInfo);
+    // }
     public function validateUsername($username){
         if( $this->usernameValidator->validate($username)){
-            return new Result(null,HUNDRED_THIRTY,true);
+            return new Result(null,USERNAME_SUCCESS,true);
         }else{
-             return new Result(null,HUNDRED_TWENTY,false);
+             return new Result(null,USERNAME_ERROR,false);
         }
     }
     public function validatePassword($password){
-       return $this->passwordValidator->validate($password);
+        if( $this->passwordValidator->validate($password)){
+            return new Result(null,PASSWORD_SUCCESS,true);
+        }else{
+             return new Result(null,PASSWORD_ERROR,false);
+        }
     }
-    public function validateName($name){
-       return $this->nameValidator->validate($name);
-    }
+    // public function validateName($name){
+    //    return $this->nameValidator->validate($name);
+    // }
 }

@@ -57,7 +57,7 @@ class DrugsRepositoryImp implements DrugsRepository{
             for ($i=0; $i <count($dbDrugs); $i++) { 
                 array_push($drugs,DbDrugToDomainMapper::map($dbDrugs[$i]));
             }
-            return new Result($drugs,FIFTY,true);;
+            return new Result($drugs,RECORD_FOUND,true);;
         }
     }
     function searchDrugsByName($name)
@@ -78,7 +78,7 @@ class DrugsRepositoryImp implements DrugsRepository{
         if(is_null($totalNumberOfDrugs)){
             return new Result(null,TWENTY,false);
         }else{
-            return new Result($totalNumberOfDrugs,FIFTY,true);
+            return new Result($totalNumberOfDrugs,RECORD_FOUND,true);
         }
     }
     function deleteDrug($id){

@@ -7,10 +7,15 @@ if(!isset($_SESSION['username'])){header("Location: http://localhost/login-syste
     <head>
         <title>Pages - Admin Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
-        <?php require_once(dirname(__FILE__).'/../../../core/presentation/ui/include/header.php'); ?>
-        <link href="../../../resources/css/pages-icons.css" rel="stylesheet" type="text/css">
-        <link href="../../../resources/css/select2.css" rel="stylesheet" type="text/css">
-        <link class="main-stylesheet" href="../../../resources/css/pages.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="../../../../core/presentation/resource/css/fontawesome-all.min.css"> -->
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link href="../css/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="../css/pages-icons.css" rel="stylesheet" type="text/css">
+        <link href="../css/select2.css" rel="stylesheet" type="text/css">
+        <link class="main-stylesheet" href="../css/pages.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="fixed-header dashboard">
 
@@ -29,10 +34,10 @@ if(!isset($_SESSION['username'])){header("Location: http://localhost/login-syste
                         <span class="icon-thumbnail"><i class="pg-calender"></i></span>
                         <ul class="sub-menu">
                             <li class="">
-                            <a href="#" id='adddrugs'>Add Drugs</a>
+                            <a href="#" id='adddrugmenu'>Add Drugs</a>
                             </li>
                             <li class="">
-                            <a href="#" id='viewdrugs'>View Drugs</a>
+                            <a href="#" id='viewdrugsmenu'>View Drugs</a>
                             </li>
                         </ul>
                     </li>
@@ -79,7 +84,7 @@ if(!isset($_SESSION['username'])){header("Location: http://localhost/login-syste
                     <div class="dropdown pull-right d-lg-block d-none">
                         <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="thumbnail-wrapper d32 circular inline">
-                                <img src="assets/img/profiles/avatar.jpg" alt="" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="32" height="32">
+                                <img src="" alt="" data-src="" data-src-retina="" width="32" height="32">
                             </span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
@@ -95,16 +100,17 @@ if(!isset($_SESSION['username'])){header("Location: http://localhost/login-syste
             <div class='container' style='margin-top:60px;'>
                 <div class='row'>
                     <div class='col-md-12 maincontent'>
-                        <?php require_once(dirname(__FILE__).'/../../../drugs/presentation/ui/AddDrugs.php'); ?>
-                        <?php require_once(dirname(__FILE__).'/../../../drugs/presentation/ui/FetchDrugs.php'); ?>
-                        <?php require_once(dirname(__FILE__).'/../../../drugs/presentation/ui/UpdateDrug.php'); ?>
-                        <?php require_once(dirname(__FILE__).'/../../../order/presentation/ui/CreateOrder.php'); ?>
+                        <?php require_once(dirname(__DIR__,4).'/drugs/presentation/ui/AddDrugs.php'); ?>
+                        <?php require_once(dirname(__DIR__,4).'/drugs/presentation/ui/FetchDrugs.php'); ?>
+                        <?php require_once(dirname(__DIR__,4).'/drugs/presentation/ui/UpdateDrug.php'); ?>
+                        <?php require_once(dirname(__DIR__,4).'/order/presentation/ui/CreateOrder.php'); ?>
                     </div>
                 </div>
-            </div>
-            
-<?php require_once(dirname(__FILE__).'/../../../core/presentation/ui/include/footer.php'); ?>
-        <script src="../../../resources/js/pages.js"></script>
-        <script src="../../../resources/js/dashboard.js"></script>
+            </div> 
+           
+<?php require_once(dirname(__FILE__).'/include/footer.php'); ?>
+        <script src="../js/pages.js"></script>
+         <script src="../js/dashboard.js"></script>
+         <script type="module" src="../../../../drugs/presentation/js/drugs.js"></script>
     </body><!-- End of body -->
 </html><!-- End of html -->

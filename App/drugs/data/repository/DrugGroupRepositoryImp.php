@@ -20,7 +20,7 @@ class DrugGroupRepositoryImp  implements DrugGroupRepository {
             for ($i=0; $i < count($dbDrugGroups) ; $i++) { 
                 array_push($drugGroups,DbDrugGroupToDomainMapper::map($dbDrugGroups[$i]));
             }
-            return new Result($drugGroups,FIFTY,true);
+            return new Result($drugGroups,RECORD_FOUND,true);
         }
     }
     public function fetchDrugGroupByNameOrId($drugNameOrId){
@@ -28,7 +28,7 @@ class DrugGroupRepositoryImp  implements DrugGroupRepository {
         if(is_null($dbDrugGroup)){
             return new Result(null,TWENTY,false);
         }else{
-            return new Result(DbDrugGroupToDomainMapper::map($dbDrugGroup),FIFTY,true);
+            return new Result(DbDrugGroupToDomainMapper::map($dbDrugGroup),RECORD_FOUND,true);
         }
 
     }

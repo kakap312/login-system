@@ -23,7 +23,7 @@ class DrugTypeRepositoryImp implements DrugTypeRepository {
             for ($i=0; $i < count($dbDrugTypes) ; $i++) { 
                 array_push($drugTypes,DbDrugTypeToDomainMapper::map($dbDrugTypes[$i]));
             }
-            return new Result($drugTypes,FIFTY,true);
+            return new Result($drugTypes,RECORD_FOUND,true);
         }
     }
     public function fetchDrugTypeByNameOrId($drugNameOrId){
@@ -31,7 +31,7 @@ class DrugTypeRepositoryImp implements DrugTypeRepository {
         if(is_null($dbDrugType)){
             return new Result(null,TWENTY,false);
         }else{
-            return new Result(DbDrugTypeToDomainMapper::map($dbDrugType),FIFTY,true);
+            return new Result(DbDrugTypeToDomainMapper::map($dbDrugType),RECORD_FOUND,true);
         }
     }
 }

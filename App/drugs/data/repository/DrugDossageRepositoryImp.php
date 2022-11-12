@@ -38,6 +38,6 @@ class DrugDossageRepositoryImp implements DrugDossageRepository {
     }
     public function fetchDrugDossageByIdAndAgeGroup($drugId,$ageGroup){
         $dbDrugDossage = $this->drugsDossageDao->searchDrugDossageByDrugIdAndAgeGroup($drugId,$ageGroup);
-        return is_null($dbDrugDossage)? new Result(null,TWENTY,false):new Result(DbDrugDossageToDomainMapper::map($dbDrugDossage),FIFTY,true);
+        return is_null($dbDrugDossage)? new Result(null,TWENTY,false):new Result(DbDrugDossageToDomainMapper::map($dbDrugDossage),RECORD_FOUND,true);
     }
 }

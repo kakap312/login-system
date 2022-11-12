@@ -46,6 +46,6 @@ require_once(dirname(__DIR__,4).'/core/presentation/resource/ui/include/header.p
     <?php 
     require_once(dirname(__DIR__,4).'/core/presentation/resource/ui/include/footer.php'); 
     ?>
-    <script src="../js/accountjs.js"></script>
+    <script type="module" src="../js/accountjs.js"></script>
 </body>
 </html>

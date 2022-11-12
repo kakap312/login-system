@@ -21,7 +21,7 @@ class DrugLocationRepositoryImp implements DrugLocationRepository {
             for ($i=0; $i < count($dbDrugLocation) ; $i++) { 
                 array_push($drugLocations,DbDrugLocationToDomainMapper::map($dbDrugLocation[$i]));
             }
-            return new Result($drugLocations,FIFTY,true);
+            return new Result($drugLocations,RECORD_FOUND,true);
         }
     }
     public function fetchDrugLocationByNameOrId($drugLocationNameOrId){
@@ -29,7 +29,7 @@ class DrugLocationRepositoryImp implements DrugLocationRepository {
         if(is_null($dbDrugLocation)){
             return new Result(null,TWENTY,false);
         }else{
-            return new Result(DbDrugLocationToDomainMapper::map($dbDrugLocation),FIFTY,true);
+            return new Result(DbDrugLocationToDomainMapper::map($dbDrugLocation),RECORD_FOUND,true);
         }
     }
 

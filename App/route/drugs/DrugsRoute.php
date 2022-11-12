@@ -4,7 +4,7 @@ require_once(dirname(__FILE__).'/../../drugs/domain/model/SavedDrugInfo.php');
 require_once(dirname(__FILE__).'/../../drugs/domain/model/SavedDrugDossageInfo.php');
 
 $drugsController = new DrugsController();
-$action = $_POST['action'];  
+$action = $_POST['action'];
 
 
 
@@ -41,7 +41,7 @@ if($action == "createdrug"){
         $_POST['createdat']
     )));
 }else if($action=="druggroup"){
-    echo json_encode($drugsController->retriveDrugGroups());
+     echo json_encode($drugsController->retriveDrugGroups());
 }else if($action == "drugtype"){
     echo json_encode($drugsController->retrieveDrugType());
 
@@ -49,7 +49,7 @@ if($action == "createdrug"){
 
 }else if($action=="druglocation"){
     echo json_encode($drugsController->retrieveDrugLocation());
-}else if ($action == "viewdrugs"){
+}else if ($action == "fetchdrugs"){
     echo json_encode($drugsController->viewDrugs());
 }else if ($action == 'searchdrugs'){
     echo json_encode($drugsController->searchdrugs($_POST['searchkey']));
